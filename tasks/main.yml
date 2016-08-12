@@ -4,13 +4,13 @@
   become_user: root
   register: couchdb_backup_modified
   with_items:
-    - usr/lib/systemd/system/couchdb-backup.timer
-    - usr/lib/systemd/system/couchdb-backup.service
-    - usr/local/bin/couchdb-backup.sh
+    - {f: usr/lib/systemd/system/couchdb-backup.timer, m: '0644' }
+    - {f: usr/lib/systemd/system/couchdb-backup.service, m: '0644'}
+    - {f: usr/local/bin/couchdb-backup.sh, m: '0755'}
   template: >-
-    src={{item}}.j2
-    dest=/{{item}}
-    mode=0644
+    src={{item.f}}.j2
+    dest=/{{item.f}}
+    mode={{item.m}}
     
 - name: systemctl daemon-reload
   become: yes
