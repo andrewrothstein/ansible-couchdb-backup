@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-DATE=$(date --iso-8601)
+DATE=$({{couchdb_backup_timestamp_cmd}})
 BACKUPDIR={{couchdb_backup_dir}}/{{inventory_hostname}}/$DATE
 mkdir -p $BACKUPDIR
 docker run --rm -it \

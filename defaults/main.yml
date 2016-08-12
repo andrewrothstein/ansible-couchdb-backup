@@ -5,3 +5,4 @@ couchdb_backup_tgz: couchdb.tgz
 couchdb_backup_dir: ~/couchdb-backups
 couchdb_backup_oncalendar: '*-*-* 22:00:00'
 couchdb_backup_persistent: False
+couchdb_backup_timestamp_cmd: 'date --iso-8601=seconds'
