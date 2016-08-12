@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+DATE=$(date --iso-8601)
+BACKUPDIR={{couchdb_backup_dir}}/{{inventory_hostname}}/$DATE
+mkdir -p $BACKUPDIR
+docker run --rm -it \
+       --volumes-from {{couchdb_backup_data_container_name}} \
+       -v $BACKUPDIR:/backup \
+       busybox \
+       tar zcvf /backup/{{couchdb_backup_tgz}} {{couchdb_backup_data_path}}

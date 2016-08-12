@@ -1,0 +1,24 @@
+---
+- name: installing systemd units...
+  become: yes
+  become_user: root
+  register: couchdb_backup_modified
+  with_items:
+    - usr/lib/systemd/system/couchdb-backup.timer
+    - usr/lib/systemd/system/couchdb-backup.service
+    - usr/local/bin/couchdb-backup.sh
+  template: >-
+    src={{item}}.j2
+    dest=/{{item}}
+    mode=0644
+    
+- name: systemctl daemon-reload
+  become: yes
+  become_user: root
+  when: couchdb_backup_modified|changed
+  command: systemctl daemon-reload
+
+- name: launch timer
+  become: yes
+  become_user: root
+  service: name=couchdb-backup.timer enabled=true state=started

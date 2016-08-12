@@ -1,0 +1,11 @@
+[Unit]
+Description=Scheduler for couchdb-backup.service
+
+[Timer]
+# daily at 10pm local time
+OnCalendar={{couchdb_backup_oncalendar}}
+
+Persistent={{couchdb_backup_persistent|to_json}}
+
+[Install]
+WantedBy=timers.target

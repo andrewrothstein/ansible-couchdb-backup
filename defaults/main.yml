@@ -1,0 +1,7 @@
+---
+couchdb_backup_data_path: /usr/local/var/lib/couchdb
+couchdb_backup_data_container_name: couchdb-data
+couchdb_backup_tgz: couchdb.tgz
+couchdb_backup_dir: ~/couchdb-backups
+couchdb_backup_oncalendar: '*-*-* 22:00:00'
+couchdb_backup_persistent: False
