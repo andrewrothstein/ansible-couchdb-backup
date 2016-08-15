@@ -2,7 +2,7 @@
 DATE=$({{couchdb_backup_timestamp_cmd}})
 BACKUPDIR={{couchdb_backup_dir}}/{{inventory_hostname}}/$DATE
 mkdir -p $BACKUPDIR
-docker run --rm -it \
+docker run --rm \
        --volumes-from {{couchdb_backup_data_container_name}} \
        -v $BACKUPDIR:/backup \
        busybox \
